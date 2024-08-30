@@ -1,0 +1,10 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="actitime-automation.imp" verbose="1">
+    <test name="Regression1">
+       <classes>
+
+           <class name="actitimeautomation1.TestUser1"/>
+
+        </classes>
+    </test>
+</suite>
