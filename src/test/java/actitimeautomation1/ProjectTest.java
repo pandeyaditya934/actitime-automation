@@ -26,6 +26,11 @@ public class ProjectTest extends BaseClass {
         LoginPage loginPage = new LoginPage();
     }
 
+    @Test
+    public void verifyCreateNewProject(){
+        
+    }
+
 
 
 
