@@ -1,7 +1,7 @@
 package actitimeautomation1;
-import actitimeautomation.imp1.common.BaseClass1;
+import actitimeautomation.imp1.common.BaseClass;
 import actitimeautomation.imp1.common.LoginSetup;
-import actitimeautomation.imp1.common.Propertyhandling;
+import actitimeautomation.imp1.common.PropertyHandling;
 import actitimeautomation.imp1.pages.CustomerPage;
 import actitimeautomation.imp1.pages.ProjectPage;
 import org.openqa.selenium.By;
@@ -16,20 +16,20 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestProject1 extends BaseClass1
+public class TestProject1 extends BaseClass
 {   public static WebDriver driver;
-    Propertyhandling propertyhandling;
+    PropertyHandling propertyHandling;
     CustomerPage customerPage;
     ProjectPage projectPage;
 
     @BeforeClass
     public void LoginMethod() throws InterruptedException, IOException {
-        Propertyhandling propertyhandling=new Propertyhandling();
-        baseMethod(propertyhandling.getProperty("browser"));
+        propertyHandling=new PropertyHandling();
+        launchBrowser(propertyHandling.getProperty("browser"));
         driver = super.driver;
-        driver.navigate().to(propertyhandling.getProperty("actitimeURL"));
+        driver.navigate().to(propertyHandling.getProperty("actitimeURL"));
         LoginSetup loginSetup=new LoginSetup(driver);
-        loginSetup.loginMethod(propertyhandling.getProperty("username"),propertyhandling.getProperty("password"));
+        loginSetup.loginMethod(propertyHandling.getProperty("username"),propertyHandling.getProperty("password"));
         customerPage=new CustomerPage(driver);
         projectPage=new ProjectPage(driver);
         Thread.sleep(5000);
@@ -37,7 +37,7 @@ public class TestProject1 extends BaseClass1
     @DataProvider
     public Object[][] getCustProjectData()
     {   Object[][] obj=new Object[][]
-            {   {"CyberCheck85","Connection23","project regarding the netowork connecntion of the particular area8"}
+            {   {"CyberCheck90","Connection28","project regarding the netowork connecntion of the particular area13"}
             };
         return obj;
     }
@@ -52,7 +52,7 @@ public class TestProject1 extends BaseClass1
     @DataProvider
     public Object[][] getCustProjectToAssignData()
     {   Object[][] obj=new Object[][]
-            {   {"Connection_4"}
+            {   {"Connection_8"}
             };
         return obj;
     }

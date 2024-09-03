@@ -1,19 +1,16 @@
 package actitimeautomation.imp1.pages;
 
-import actitimeautomation.imp1.common.BaseClass1;
-import actitimeautomation.imp1.common.CommonUtil1;
+import actitimeautomation.imp1.common.BaseClass;
+import actitimeautomation.imp1.common.CommonUtil;
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.testng.asserts.SoftAssert;
 
-public class CustomerPage extends BaseClass1 {
+public class CustomerPage extends BaseClass {
     WebDriver driver;
-    CommonUtil1 commonUtil1;
+    CommonUtil commonUtil1;
     public CustomerPage(WebDriver driver)
     {   this.driver=driver;
-        CommonUtil1 commonUtil11=new CommonUtil1(this.driver);
+        CommonUtil commonUtil11=new CommonUtil(this.driver);
         this.commonUtil1=commonUtil11;
     }
 
@@ -32,7 +29,7 @@ public class CustomerPage extends BaseClass1 {
         driver.findElement(createNewCustomer).click();
         commonUtil1.waitForElementClickable(customerNameTextArea);
         driver.findElement(customerNameTextArea).sendKeys(customerName.toString());
-        commonUtil1.waitForElementVisible(driver.findElement(customerCreateButton));
+//        commonUtil1.waitForElementVisible(driver.findElement(customerCreateButton));
         driver.findElement(customerCreateButton).click();
         Thread.sleep(3000);
     }
@@ -42,7 +39,7 @@ public class CustomerPage extends BaseClass1 {
     public void verifyCustomer(Object customerName) throws Exception {
         commonUtil1.waitForElementToPresent(taskModule);
         driver.findElement(taskModule).click();
-        commonUtil1.waitForElementVisible(driver.findElement(searchButton));
+//        commonUtil1.waitForElementVisible(driver.findElement(searchButton));
         driver.findElement(searchButton).click();
         driver.findElement(searchButton).sendKeys(customerName.toString());
         commonUtil1.waitForElementClickable(By.xpath("//span[text()='"+customerName+"']"));
@@ -63,13 +60,13 @@ public class CustomerPage extends BaseClass1 {
     public void deleteCustomer(Object customerName) throws InterruptedException {
         commonUtil1.waitForElementToPresent(taskModule);
         driver.findElement(taskModule).click();
-        commonUtil1.waitForElementVisible(driver.findElement(searchButton));
+//        commonUtil1.waitForElementVisible(driver.findElement(searchButton));
         driver.findElement(searchButton).click();
         driver.findElement(searchButton).sendKeys(customerName.toString());
         commonUtil1.waitForElementClickable(By.xpath("//span[text()='"+customerName+"']"));
         driver.findElement(By.xpath("//span[text()='"+customerName+"']")).click();
         //Thread.sleep(5000);
-        commonUtil1.waitForElementVisible(driver.findElement(By.xpath("//div[@class='titleEditButtonContainer']//div[2]")));
+//        commonUtil1.waitForElementVisible(driver.findElement(By.xpath("//div[@class='titleEditButtonContainer']//div[2]")));
         driver.findElement(By.xpath("//div[@class='titleEditButtonContainer']//div[2]")).click();
        // Thread.sleep(4000);
         //JavascriptExecutor js=(JavascriptExecutor)driver;

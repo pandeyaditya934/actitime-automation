@@ -1,7 +1,9 @@
 package actitimeautomation.imp1.pages;
 
-import actitimeautomation.imp1.common.CommonUtil1;
-import actitimeautomation.imp1.common.Propertyhandling;
+import actitimeautomation.imp1.common.CommonUtil;
+import actitimeautomation.imp1.common.CommonUtil;
+import actitimeautomation.imp1.common.PropertyHandling;
+import actitimeautomation.imp1.common.PropertyHandling;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,8 +14,8 @@ import java.io.IOException;
 
 public class ProjectPage {
     WebDriver driver;
-    Propertyhandling propertyhandling;
-    CommonUtil1 commonUtil1;
+    PropertyHandling PropertyHandling;
+    CommonUtil CommonUtil;
     CustomerPage customerPage;
 
     @FindBy(xpath = "//div[@class='item createNewProject']")
@@ -27,41 +29,41 @@ public class ProjectPage {
 
     public ProjectPage(WebDriver driver) throws IOException {
         this.driver=driver;
-        propertyhandling=new Propertyhandling();
-        commonUtil1=new CommonUtil1(driver);
+        PropertyHandling=new PropertyHandling();
+        CommonUtil=new CommonUtil(driver);
         PageFactory.initElements(driver,this);
         customerPage=new CustomerPage(driver);
     }
 
     public void createProject(Object customerName,Object proName, Object discriptionArea) throws InterruptedException {
         customerPage.createCustomer(customerName);
-        commonUtil1.waitForElementToPresent(customerPage.addNewButton);
+        CommonUtil.waitForElementToPresent(customerPage.addNewButton);
         driver.findElement(customerPage.addNewButton).click();
         createNewPojectButton.click();
-        commonUtil1.waitForElementClickable(projectNameTextArea);
+        CommonUtil.waitForElementClickable(projectNameTextArea);
         projectNameTextArea.sendKeys(proName.toString());
-        commonUtil1.waitForElementClickable(discriptionTextArea);
+        CommonUtil.waitForElementClickable(discriptionTextArea);
         discriptionTextArea.click();
         discriptionTextArea.sendKeys(discriptionArea.toString());
-        commonUtil1.waitForElementClickable(prjectCreateButton);
+        CommonUtil.waitForElementClickable(prjectCreateButton);
         prjectCreateButton.click();
         Thread.sleep(4000);
     }
     public void checkProject(Object customerName,Object projectName) throws InterruptedException {
-        //commonUtil1.waitForElementClickable(customerPage.searchButton);
+        //CommonUtil.waitForElementClickable(customerPage.searchButton);
         driver.findElement(customerPage.searchButton).click();
         driver.findElement(customerPage.searchButton).sendKeys(projectName.toString());
         Thread.sleep(3000);
-        //commonUtil1.waitForElementVisible(driver.findElement(By.xpath("//span[text()='"+projectName+"']")));
+        //CommonUtil.waitForElementVisible(driver.findElement(By.xpath("//span[text()='"+projectName+"']")));
         boolean projectVisible=driver.findElement(By.xpath("//span[text()='"+projectName+"']")).isDisplayed();
         if(projectVisible)
         {   System.out.println("yes project is created");
             Thread.sleep(3000);
-            //commonUtil1.waitForElementVisible(driver.findElement(By.xpath("//div[text()='"+customerName+"']")));
+            //CommonUtil.waitForElementVisible(driver.findElement(By.xpath("//div[text()='"+customerName+"']")));
             boolean assignedCustomer=driver.findElement(By.xpath("//div[text()='"+customerName+"']")).isDisplayed();
             if(assignedCustomer)
             {   System.out.println("yes assign to the right customer as well");
-                commonUtil1.waitForElementClickable(By.xpath("//td[@class='iconColumn']/div"));
+                CommonUtil.waitForElementClickable(By.xpath("//td[@class='iconColumn']/div"));
                 driver.findElement(By.xpath("//td[@class='iconColumn']/div")).click();
             }else{  System.out.println("not assign to the right customer");
             }
