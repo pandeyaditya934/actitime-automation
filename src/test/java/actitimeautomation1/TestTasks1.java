@@ -1,8 +1,8 @@
 package actitimeautomation1;
 
-import actitimeautomation.imp1.common.BaseClass1;
+import actitimeautomation.imp1.common.BaseClass;
 import actitimeautomation.imp1.common.LoginSetup;
-import actitimeautomation.imp1.common.Propertyhandling;
+import actitimeautomation.imp1.common.PropertyHandling;
 import actitimeautomation.imp1.pages.TaskPage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -14,13 +14,13 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestTasks1 extends BaseClass1
+public class TestTasks1 extends BaseClass
 {   WebDriver driver;
     TaskPage taskPage;
     @BeforeClass
     public void LoginMethod() throws InterruptedException, IOException {
-        Propertyhandling propertyhandling=new Propertyhandling();
-        baseMethod(propertyhandling.getProperty("browser"));
+        PropertyHandling propertyhandling=new PropertyHandling();
+        launchBrowser(propertyhandling.getProperty("browser"));
         driver = super.driver;
         driver.navigate().to(propertyhandling.getProperty("actitimeURL"));
         LoginSetup loginSetup=new LoginSetup(driver);
@@ -32,7 +32,7 @@ public class TestTasks1 extends BaseClass1
     @DataProvider
     public Object[][] getCustProjectData()
     {   Object[][] obj=new Object[][]
-            {   {"CyberCheckConnection6","ConnectionTask6","project regarding the netowork connecntion of the particular area of the task6","connectionSpeed6"}
+            {   {"CyberCheckConnection11","ConnectionTask11","project regarding the netowork connecntion of the particular area of the task11","connectionSpeed11"}
             };
         return obj;
     }

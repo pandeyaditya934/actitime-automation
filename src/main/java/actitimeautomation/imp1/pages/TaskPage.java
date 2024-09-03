@@ -1,6 +1,6 @@
 package actitimeautomation.imp1.pages;
 
-import actitimeautomation.imp1.common.CommonUtil1;
+import actitimeautomation.imp1.common.CommonUtil;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -9,7 +9,7 @@ import org.openqa.selenium.support.PageFactory;
 import java.io.IOException;
 
 public class TaskPage {
-    CommonUtil1 commonUtil1;
+    CommonUtil CommonUtil;
     WebDriver driver;
     CustomerPage customerPage;
     ProjectPage projectPage;
@@ -21,24 +21,24 @@ public class TaskPage {
         this.driver=driver;
         customerPage=new CustomerPage(driver);
         projectPage=new ProjectPage(driver);
-        commonUtil1=new CommonUtil1(driver);
+        CommonUtil=new CommonUtil(driver);
         PageFactory.initElements(driver,this);
     }
     public void createTask(Object customerName, Object projectName,Object discriptionArea, Object taskName) throws InterruptedException {
         customerPage.createCustomer(customerName);
-        commonUtil1.waitForElementToPresent(customerPage.addNewButton);
+        CommonUtil.waitForElementToPresent(customerPage.addNewButton);
         driver.findElement(customerPage.addNewButton).click();
-        commonUtil1.waitForElementClickable(projectPage.createNewPojectButton);
+        CommonUtil.waitForElementClickable(projectPage.createNewPojectButton);
         projectPage.createNewPojectButton.click();
-        commonUtil1.waitForElementClickable(projectPage.projectNameTextArea);
+        CommonUtil.waitForElementClickable(projectPage.projectNameTextArea);
         projectPage.projectNameTextArea.sendKeys(projectName.toString());
-        commonUtil1.waitForElementClickable(projectPage.discriptionTextArea);
+        CommonUtil.waitForElementClickable(projectPage.discriptionTextArea);
         projectPage.discriptionTextArea.click();
         projectPage.discriptionTextArea.sendKeys(discriptionArea.toString());
-        commonUtil1.waitForElementClickable(taskNameTextArea);
+        CommonUtil.waitForElementClickable(taskNameTextArea);
         taskNameTextArea.click();
         taskNameTextArea.sendKeys(taskName.toString());
-        commonUtil1.waitForElementClickable(projectPage.prjectCreateButton);
+        CommonUtil.waitForElementClickable(projectPage.prjectCreateButton);
         projectPage.prjectCreateButton.click();
     }
 }

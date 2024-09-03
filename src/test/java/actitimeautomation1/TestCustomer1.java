@@ -16,17 +16,17 @@ import java.io.IOException;
 public class TestCustomer1 extends BaseClass {
     public static WebDriver driver;
     CommonUtil commonUtil1;
-    PropertyHandling propertyhandling;
+    PropertyHandling propertyHandling;
     CustomerPage customerPage;
 
     @BeforeClass
     public void LoginMethod() throws InterruptedException, IOException {
-        PropertyHandling propertyHandling=new PropertyHandling();
-        launchBrowser(propertyhandling.getProperty("browser"));
+        propertyHandling=new PropertyHandling();
+        launchBrowser(propertyHandling.getProperty("browser"));
         driver = super.driver;
-        driver.navigate().to(propertyhandling.getProperty("actitimeURL"));
+        driver.navigate().to(propertyHandling.getProperty("actitimeURL"));
         LoginSetup loginSetup=new LoginSetup(driver);
-        loginSetup.loginMethod(propertyhandling.getProperty("username"),propertyhandling.getProperty("password"));
+        loginSetup.loginMethod(propertyHandling.getProperty("username"),propertyHandling.getProperty("password"));
         CommonUtil commonUtil1=new CommonUtil(driver);
         this.commonUtil1=commonUtil1;
         customerPage=new CustomerPage(driver);
@@ -35,7 +35,7 @@ public class TestCustomer1 extends BaseClass {
     @DataProvider
     public Object[][] getTestdata()
     {   Object[][] obj=new Object[][]
-            {   {"Cybercheck288"}
+            {   {"Cybercheck292"}
             };
         return obj;
     }

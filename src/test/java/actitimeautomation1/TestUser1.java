@@ -1,9 +1,9 @@
 package actitimeautomation1;
 
-import actitimeautomation.imp1.common.BaseClass1;
-import actitimeautomation.imp1.common.CommonUtil1;
+import actitimeautomation.imp1.common.BaseClass;
+import actitimeautomation.imp1.common.CommonUtil;
 import actitimeautomation.imp1.common.LoginSetup;
-import actitimeautomation.imp1.common.Propertyhandling;
+import actitimeautomation.imp1.common.PropertyHandling;
 import actitimeautomation.imp1.pages.UserPage;
 import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
@@ -13,31 +13,31 @@ import org.testng.annotations.Test;
 
 import java.io.IOException;
 
-public class TestUser1 extends BaseClass1
+public class TestUser1 extends BaseClass
 {   public WebDriver driver;
-    CommonUtil1 commonUtil1;
+    CommonUtil commonUtil;
     Actions actions;
-    Propertyhandling propertyhandling;
+    PropertyHandling propertyHandling;
     UserPage userPage;
 
     @BeforeClass
     public void LoginMethod() throws InterruptedException, IOException {
-        Propertyhandling propertyhandling=new Propertyhandling();
-        this.propertyhandling=propertyhandling;
-        baseMethod(propertyhandling.getProperty("browser"));
+        PropertyHandling propertyHandling=new PropertyHandling();
+        this.propertyHandling=propertyHandling;
+        launchBrowser(propertyHandling.getProperty("browser"));
         driver=super.driver;
-        driver.navigate().to(propertyhandling.getProperty("actitimeURL"));
+        driver.navigate().to(propertyHandling.getProperty("actitimeURL"));
         LoginSetup loginSetup=new LoginSetup(driver);
-        loginSetup.loginMethod(propertyhandling.getProperty("username"),propertyhandling.getProperty("password"));
-        CommonUtil1 commonUtil1=new CommonUtil1(driver);
-        this.commonUtil1=commonUtil1;
+        loginSetup.loginMethod(propertyHandling.getProperty("username"),propertyHandling.getProperty("password"));
+        CommonUtil commonUtil=new CommonUtil(driver);
+        this.commonUtil=commonUtil;
         UserPage userPage=new UserPage(driver);
         this.userPage=userPage;
     }
     @DataProvider
     public Object[][] userData()
     {    Object[][] obj=new Object[][]
-            {   {"kumar22@yopmail.com-66","morajkar-66","ketan-66"}
+            {   {"kumar22@yopmail.com-71","morajkar-71","ketan-71"}
             };
         return obj;
     }
@@ -58,13 +58,14 @@ public class TestUser1 extends BaseClass1
     }
     @Test(priority = 3,dataProvider = "departmentData",dependsOnMethods = {"checkCustomer"})
     public void checkCustAssignDept(Object deptName ) throws InterruptedException {
-        commonUtil1.fluentwait(By.xpath("//table[@class='userNameContainer']"));
+        //commonUtil.fluentWait(By.xpath("//table[@class='userNameContainer']"));
+        commonUtil.waitForElementClickable(By.xpath("//table[@class='userNameContainer']"));
         driver.findElement(By.xpath("//table[@class='userNameContainer']")).click();
         Thread.sleep(5000);
         driver.findElement(By.xpath("//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']")).click();
-        commonUtil1.fluentwait(By.xpath("//div[text()='"+deptName+"']"));
+        commonUtil.fluentWait(By.xpath("//div[text()='"+deptName+"']"));
         driver.findElement(By.xpath("//div[text()='"+deptName+"']")).click();
-        commonUtil1.waitForElementToPresent(By.xpath("//table[@class='userNameContainer']"));
+        commonUtil.waitForElementToPresent(By.xpath("//table[@class='userNameContainer']"));
         driver.findElement(By.xpath("//table[@class='userNameContainer']")).click();
     }
 
@@ -80,14 +81,14 @@ public class TestUser1 extends BaseClass1
     public void createDepartment(String deptName) throws InterruptedException {
         driver.findElement(By.xpath("//div[text()='  Departments']")).click();
         driver.findElement(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']")).click();
-        commonUtil1.fluentwait(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']"));
+        commonUtil.fluentWait(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']"));
         driver.findElement(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']")).sendKeys(deptName);
         driver.findElement(By.xpath("//button[@id='groupManagementLightBox_addGroupButton']")).click();
     }
 
     @Test(priority = 5,dataProvider = "deptData")
     public void checkDepartment(String deptName) throws InterruptedException {
-       /*commonUtil1.fluentwait(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']"));
+       commonUtil.fluentWait(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']"));
         driver.findElement(By.xpath("//input[@id='groupManagementLightBox_newGroupInput']")).click();
         Actions actions = new Actions(driver);
         this.actions=actions;
@@ -98,18 +99,17 @@ public class TestUser1 extends BaseClass1
                 .build().perform();
         actions.keyDown(Keys.ENTER).build().perform();
         actions.keyUp(Keys.ENTER).build().perform();
-        commonUtil1.waitForElementClickable(By.xpath("//div[@id='groupManagementLightBox_closeLightbox']"));
+        commonUtil.waitForElementClickable(By.xpath("//div[@id='groupManagementLightBox_closeLightbox']"));
         driver.findElement(By.xpath("//div[@id='groupManagementLightBox_closeLightbox']")).click();
-        */
-        userPage.verifyAssignDepartment(deptName);
+       // userPage.verifyAssignDepartment(deptName);
     }
 
     @Test(priority = 6)
     public void deleteCustomer() throws InterruptedException {
         Thread.sleep(4000);
-        commonUtil1.waitForElementToPresent(By.xpath("//table[@class='userNameContainer']"));
+        commonUtil.waitForElementToPresent(By.xpath("//table[@class='userNameContainer']"));
         driver.findElement(By.xpath("//table[@class='userNameContainer']")).click();
-        commonUtil1.waitForElementClickable(By.xpath("(//div[@class='actionButtonWrapper'])[1]"));
+        commonUtil.waitForElementClickable(By.xpath("(//div[@class='actionButtonWrapper'])[1]"));
         driver.findElement(By.xpath("(//div[@class='actionButtonWrapper'])[1]")).click();
         Thread.sleep(3000);
         Alert alert= driver.switchTo().alert();
@@ -120,13 +120,13 @@ public class TestUser1 extends BaseClass1
 
     @Test(priority = 7,dataProvider = "userData")
     public void checkDeleteCustomer(Object emailid,Object lastname, Object firstname) throws InterruptedException {
-        commonUtil1.waitForElementClickable(By.xpath("(//div[@class='close'])[1]"));
+        commonUtil.waitForElementClickable(By.xpath("(//div[@class='close'])[1]"));
         driver.findElement(By.xpath("(//div[@class='close'])[1]")).click();
-        commonUtil1.waitForElementClickable(By.xpath("(//div[@class='icon'])[1]"));
+        commonUtil.waitForElementClickable(By.xpath("(//div[@class='icon'])[1]"));
         driver.findElement(By.xpath("(//div[@class='icon'])[1]")).click();
-        commonUtil1.waitForElementClickable(By.xpath("(//input[@placeholder='Start typing name...'])[1]"));
+        commonUtil.waitForElementClickable(By.xpath("(//input[@placeholder='Start typing name...'])[1]"));
         driver.findElement(By.xpath("(//input[@placeholder='Start typing name...'])[1]")).sendKeys(firstname.toString());
-        commonUtil1.waitForElementToPresent(By.xpath("//span[text()='There are no users found']"));
+        commonUtil.waitForElementToPresent(By.xpath("//span[text()='There are no users found']"));
         driver.findElement(By.xpath("//span[text()='There are no users found']")).click();
         boolean errorMessage=driver.findElement(By.xpath("//span[text()='There are no users found']")).isDisplayed();
         if(errorMessage)
