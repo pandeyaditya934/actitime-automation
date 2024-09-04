@@ -35,7 +35,7 @@ public class TestCustomer1 extends BaseClass {
     @DataProvider
     public Object[][] getTestdata()
     {   Object[][] obj=new Object[][]
-            {   {"Cybercheck292"}
+            {   {"Cybercheck294"}
             };
         return obj;
     }
@@ -47,7 +47,7 @@ public class TestCustomer1 extends BaseClass {
     public void checkCustomer(Object custName) throws Exception {
         customerPage.verifyCustomer(custName);
     }
-    @Test(priority = 3,dataProvider = "getTestdata",enabled = true)
+    @Test(priority = 3,dataProvider = "getTestdata",enabled = true, dependsOnMethods = "custTesting")
     public void deleteCustomer(Object custName) throws InterruptedException {
         customerPage.deleteCustomer(custName);
     }

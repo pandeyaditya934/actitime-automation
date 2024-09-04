@@ -37,7 +37,7 @@ public class TestUser1 extends BaseClass
     @DataProvider
     public Object[][] userData()
     {    Object[][] obj=new Object[][]
-            {   {"kumar22@yopmail.com-71","morajkar-71","ketan-71"}
+            {   {"kumar22@yopmail.com-73","morajkar-73","ketan-73"}
             };
         return obj;
     }
@@ -118,7 +118,7 @@ public class TestUser1 extends BaseClass
         actions.keyUp(Keys.ENTER).build().perform();;
     }
 
-    @Test(priority = 7,dataProvider = "userData")
+    @Test(priority = 7,dataProvider = "userData", dependsOnMethods = "testCustomer")
     public void checkDeleteCustomer(Object emailid,Object lastname, Object firstname) throws InterruptedException {
         commonUtil.waitForElementClickable(By.xpath("(//div[@class='close'])[1]"));
         driver.findElement(By.xpath("(//div[@class='close'])[1]")).click();

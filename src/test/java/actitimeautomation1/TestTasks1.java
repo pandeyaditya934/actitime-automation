@@ -32,20 +32,13 @@ public class TestTasks1 extends BaseClass
     @DataProvider
     public Object[][] getCustProjectData()
     {   Object[][] obj=new Object[][]
-            {   {"CyberCheckConnection11","ConnectionTask11","project regarding the netowork connecntion of the particular area of the task11","connectionSpeed11"}
+            {   {"CyberCheckConnection15","ConnectionTask15","project regarding the netowork connecntion of the particular area of the task15","connectionSpeed15"}
             };
         return obj;
     }
     @Test(dataProvider = "getCustProjectData")
     public void testTask(Object customername, Object projectName, Object discriptionArea, Object taskName) throws InterruptedException {
         taskPage.createTask(customername,projectName,discriptionArea,taskName);
-      /*  // driver.findElement(By.xpath("//div[text()='Add New']")).click();
-        Thread.sleep(5000);
-        String taskname="Connenctivity-3";
-        driver.findElement(By.xpath("//input[@placeholder='Enter task name'][1]")).click();
-        driver.findElement(By.xpath("//input[@placeholder='Enter task name'][1]")).sendKeys(taskname);
-        driver.findElement(By.xpath("//div[text()='Create Project']")).click();
-       */
     }
 
 }

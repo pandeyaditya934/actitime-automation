@@ -37,7 +37,7 @@ public class TestProject1 extends BaseClass
     @DataProvider
     public Object[][] getCustProjectData()
     {   Object[][] obj=new Object[][]
-            {   {"CyberCheck90","Connection28","project regarding the netowork connecntion of the particular area13"}
+            {   {"CyberCheck92","Connection30","project regarding the netowork connecntion of the particular area15"}
             };
         return obj;
     }
@@ -52,7 +52,7 @@ public class TestProject1 extends BaseClass
     @DataProvider
     public Object[][] getCustProjectToAssignData()
     {   Object[][] obj=new Object[][]
-            {   {"Connection_8"}
+            {   {"Connection_10"}
             };
         return obj;
     }
