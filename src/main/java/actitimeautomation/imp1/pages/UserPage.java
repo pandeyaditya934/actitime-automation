@@ -5,14 +5,19 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.PageFactory;
 
 public class UserPage {
     CommonUtil CommonUtil;
     WebDriver driver;
 
+    @FindBy(xpath ="//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']")
+    WebElement emptyList;
+    //div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']
     public UserPage(WebDriver driver) {
         this.driver = driver;
         CommonUtil CommonUtil = new CommonUtil(this.driver);
+        PageFactory.initElements(driver,this);
         this.CommonUtil = CommonUtil;
     }
 
@@ -61,20 +66,20 @@ public class UserPage {
     //WebElement userNameContainer;
     public By userNameContainer= By.xpath("//table[@class='userNameContainer']");
 
-    @FindBy(xpath = "//div[@class='simpleListMenuButton components_userGroupSelectorMenu emptyList notEmpty']")
-    WebElement emptyList;
 
-   /* public void verifyAssignDepartment(String deptName) throws InterruptedException {
+
+
+    public void verifyAssignDepartment(String deptName) throws InterruptedException {
 //        CommonUtil.fluentwait(By.xpath("//table[@class='userNameContainer']"));
         CommonUtil.waitForElementClickable(driver.findElement(userNameContainer));
         driver.findElement(userNameContainer).click();
         Thread.sleep(5000);
         emptyList.click();
-//        CommonUtil.fluentwait(By.xpath("//div[text()='"+deptName+"']"));
-        driver.findElement(By.xpath("//div[text()='" + deptName + "']")).click();
+        CommonUtil.fluentWait(By.xpath("(//div[text()='"+deptName+"'])[1]"));
+        driver.findElement(By.xpath("(//div[text()='"+deptName+"'])[1]")).click();
         CommonUtil.waitForElementToPresent(By.xpath("//table[@class='userNameContainer']"));
-        driver.findElement(By.xpath("//table[@class='userNameContainer']")).click();
+        CommonUtil.waitForElementClickable(userNameContainer);
+        driver.findElement(userNameContainer).click();
     }
-    */
 
 }
